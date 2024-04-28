@@ -3,7 +3,6 @@ package com.example.mywishlistapp
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.viewModelScope
 import com.example.mywishlistapp.data.Wish
@@ -52,6 +51,7 @@ class WishViewModel(
     fun deleteWish(wish: Wish){
         viewModelScope.launch(Dispatchers.IO) {
             wishRepository.deleteAWish(wish = wish)
+            getAllWishes = wishRepository.getWishes()
         }
     }
 }

@@ -26,7 +26,6 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -44,7 +43,6 @@ fun AddEditDetailView(
     }
 
     val scope = rememberCoroutineScope()
-
     val scaffoldState = rememberScaffoldState()
     if(id!=0L){
         val wish  = viewModel.getAWishById(id).collectAsState(initial = Wish(0L,"",""))
@@ -58,7 +56,7 @@ fun AddEditDetailView(
 
     Scaffold(
         topBar = {
-            Appbar(title = if (id != 0L)
+            AppBarView(title = if (id != 0L)
             stringResource(id = R.string.update_wish)
             else stringResource(id = R.string.add_wish), {navController.navigateUp()})
         },

@@ -11,17 +11,17 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 
 @Composable
-fun Navigation(viewModel: WishViewModel= viewModel(),
+fun Navigation(viewModel: WishViewModel = viewModel(),
                navController: NavHostController = rememberNavController()){
-    NavHost(navController = navController,
-            startDestination = Screen.HomeScreen.route)
-    {
-        composable(Screen.HomeScreen.route)
-        {
-            HomeView(navController,viewModel)
+    NavHost(
+        navController= navController,
+        startDestination = Screen.HomeScreen.route
+    ){
+        composable(Screen.HomeScreen.route){
+            HomeView(navController, viewModel)
         }
-        composable(
-            Screen.AddScreen.route + "/{id}",
+
+        composable(Screen.AddScreen.route + "/{id}",
             arguments = listOf(
                 navArgument("id"){
                     type = NavType.LongType
@@ -29,11 +29,9 @@ fun Navigation(viewModel: WishViewModel= viewModel(),
                     nullable = false
                 }
             )
-        )
-        {entry ->
-            val id = if(entry.arguments != null) entry.arguments!!.getLong("id") else 0L
-            AddEditDetailView(id = id, viewModel = viewModel, navController =navController )
+        ){entry->
+            val id = if(entry.arguments != null)  entry.arguments!!.getLong("id") else 0L
+            AddEditDetailView(id = id, viewModel = viewModel , navController = navController)
         }
     }
-
 }
